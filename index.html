@@ -3,14 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nguyễn Khánh Linh - Magical Portfolio</title>
+    <title>Nguyễn Khánh Linh - Portfolio</title>
     
+    <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700;900&family=Cinzel:wght@400;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
     
+    <!-- FontAwesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
+    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
@@ -33,166 +36,177 @@
         }
     </script>
     
+    <!-- GSAP for Cinematic Animations -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollToPlugin.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
 
     <style>
+        /* Phong cách Dark Academia tổng thể */
         body {
-            background-color: #050302;
+            background-color: #0d0805;
             color: #f4ebd0;
             overflow-x: hidden;
         }
         
         /* Hiệu ứng phát sáng vàng cổ điển */
         .gold-glow {
-            text-shadow: 0 0 12px rgba(212, 175, 55, 0.7), 0 0 25px rgba(212, 175, 55, 0.4);
+            text-shadow: 0 0 10px rgba(212, 175, 55, 0.6), 0 0 20px rgba(212, 175, 55, 0.3);
         }
         .gold-border-glow {
-            box-shadow: 0 0 20px rgba(212, 175, 55, 0.25);
+            box-shadow: 0 0 15px rgba(212, 175, 55, 0.3);
         }
         
         /* Nến bay lơ lửng */
         .candle {
-            animation: floatCandle 5s ease-in-out infinite alternate;
+            animation: floatCandle 6s ease-in-out infinite alternate;
         }
         @keyframes floatCandle {
-            0% { transform: translateY(0px) scale(0.95); }
-            100% { transform: translateY(-20px) scale(1.05); }
+            0% { transform: translateY(0px) rotate(0deg); }
+            100% { transform: translateY(-25px) rotate(2deg); }
         }
         
-        /* Khung tranh cổ điển mạ vàng */
-        .gold-frame {
-            border: 6px double #d4af37;
-            outline: 2px solid #1a120b;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.9), inset 0 0 20px rgba(0,0,0,0.8);
-        }
-
-        /* Thư viện cổ kính */
-        .bg-library {
-            background-image: linear-gradient(rgba(10, 7, 4, 0.85), rgba(5, 3, 2, 0.95)), 
-                              url('theme 2. jpg');
-            background-size: cover;
-            background-position: center;
-            background-attachment: fixed;
-        }
-
-        /* Giấy da cổ làm nền card */
+        /* Giấy cổ */
         .parchment-card {
-            background: linear-gradient(135deg, rgba(31, 20, 10, 0.9) 0%, rgba(18, 10, 4, 0.95) 100%);
-            border: 1px solid rgba(212, 175, 55, 0.25);
+            background: linear-gradient(135deg, #1f140a 0%, #120a04 100%);
+            border: 1px solid rgba(212, 175, 55, 0.2);
             transition: all 0.5s cubic-bezier(0.25, 1, 0.5, 1);
-            backdrop-filter: blur(4px);
         }
         .parchment-card:hover {
             border-color: #d4af37;
-            box-shadow: 0 0 30px rgba(212, 175, 55, 0.3);
-            transform: translateY(-8px);
+            box-shadow: 0 0 25px rgba(212, 175, 55, 0.2);
+            transform: translateY(-5px);
+        }
+
+        /* Khung tranh cổ điển mạ vàng */
+        .gold-frame {
+            border: 8px double #d4af37;
+            outline: 2px solid #1a120b;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.8), inset 0 0 20px rgba(0,0,0,0.8);
         }
 
         /* Thanh năng lượng phép thuật cuộn trang */
         #magic-scroll-bar {
-            width: 4px;
+            width: 5px;
             background: linear-gradient(to bottom, #d4af37, #cd7f32);
-            box-shadow: 0 0 15px #d4af37;
+            box-shadow: 0 0 10px #d4af37;
         }
 
-        /* Custom Scrollbar */
+        /* Ẩn scrollbar mặc định */
         ::-webkit-scrollbar {
-            width: 8px;
+            width: 6px;
         }
         ::-webkit-scrollbar-track {
-            background: #050302;
+            background: #0d0805;
         }
         ::-webkit-scrollbar-thumb {
             background: #d4af37;
-            border-radius: 4px;
+            border-radius: 3px;
         }
     </style>
 </head>
 <body class="font-body selection:bg-magicGold selection:text-darkAcademia">
 
+    <!-- Thanh năng lượng phép thuật chạy dọc màn hình -->
     <div id="magic-scroll-bar" class="fixed right-0 top-0 h-0 z-50 transition-all duration-100"></div>
 
+    <!-- Hệ thống Âm thanh & Điều khiển -->
     <div class="fixed bottom-6 left-6 z-50 flex items-center gap-3">
-        <button id="sound-toggle" class="bg-darkAcademia/90 border border-magicGold/50 text-magicGold px-4 py-2 rounded-full font-title text-xs hover:bg-magicGold hover:text-darkAcademia transition-all duration-300 gold-border-glow">
+        <button id="sound-toggle" class="bg-darkAcademia/80 border border-magicGold/50 text-magicGold px-4 py-2 rounded-full font-title text-sm hover:bg-magicGold hover:text-darkAcademia transition-all duration-300 gold-border-glow">
             🔇 Sound Off
         </button>
     </div>
 
-    <canvas id="magic-dust-canvas" class="fixed top-0 left-0 w-full h-full pointer-events-none z-10 opacity-70"></canvas>
+    <!-- Hạt bụi phép thuật chạy ngầm toàn màn hình -->
+    <canvas id="magic-dust-canvas" class="fixed top-0 left-0 w-full h-full pointer-events-none z-10 opacity-60"></canvas>
 
+    <!-- ========================================================= -->
+    <!-- INTRO CINEMATIC CONTAINER -->
+    <!-- ========================================================= -->
     <div id="intro-container" class="fixed inset-0 w-full h-full bg-black z-50 flex items-center justify-center overflow-hidden">
         
-        <button id="skip-intro" class="absolute top-6 right-6 z-50 text-parchment/60 font-title hover:text-magicGold tracking-widest text-xs transition-all">
+        <!-- Nút Skip Intro -->
+        <button id="skip-intro" class="absolute top-6 right-6 z-50 text-parchment/60 font-title hover:text-magicGold tracking-widest text-sm transition-all">
             SKIP INTRO <i class="fa-solid fa-wand-magic-sparkles ml-1"></i>
         </button>
 
-        <div id="scene-1" class="absolute inset-0 flex items-center justify-center px-4 bg-black">
-            <h2 class="font-header text-xl md:text-3xl text-magicGold text-center tracking-widest opacity-0 select-none max-w-2xl leading-relaxed">
+        <!-- Scene 1: Dòng chữ khơi gợi -->
+        <div id="scene-1" class="absolute inset-0 flex items-center justify-center px-4">
+            <h2 class="font-header text-2xl md:text-4xl text-magicGold text-center tracking-widest opacity-0 select-none">
                 "Every great wizard has a story..."
             </h2>
         </div>
 
-        <div id="scene-lake" class="absolute inset-0 opacity-0 flex flex-col items-center justify-center transition-transform duration-[4000ms] ease-out bg-cover bg-center" style="background-image: linear-gradient(to bottom, rgba(0,0,0,0.4), rgba(0,0,0,0.85)), url('theme 1 .jpg');">
-            <div class="absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-black via-[#0d0d1a]/40 to-transparent pointer-events-none"></div>
+        <!-- Scene 2 & 3: Hồ Đen (Black Lake) & Lâu đài Hogwarts -->
+        <div id="scene-lake" class="absolute inset-0 opacity-0 flex flex-col items-center justify-center">
+            <!-- Canvas vẽ hồ nước & sương mù huyền bí -->
+            <canvas id="lake-canvas" class="absolute inset-0 w-full h-full"></canvas>
             
-            <div class="text-center z-20 px-6 max-w-3xl">
-                <h1 class="font-header text-3xl md:text-6xl text-magicGold opacity-90 tracking-widest gold-glow select-none mb-4">
+            <!-- Silhouette Lâu đài huyền bí từ xa -->
+            <div class="absolute bottom-1/4 text-center z-20">
+                <h1 class="font-header text-3xl md:text-6xl text-magicGold opacity-70 tracking-widest gold-glow select-none">
                     HOGWARTS ACADEMY
                 </h1>
-                <p class="font-body text-xl text-parchment/80 italic tracking-wide">Hành trình khám phá tri thức và phép thuật bắt đầu...</p>
+                <p class="font-body text-parchment/80 italic mt-2 tracking-wide">A portal to your future awaits.</p>
             </div>
 
-            <div id="explore-btn-container" class="absolute bottom-20 z-30 opacity-0 scale-90">
-                <button id="explore-btn" class="font-header tracking-widest text-lg md:text-2xl text-magicGold border-2 border-magicGold px-10 py-4 bg-darkAcademia/90 rounded-md hover:bg-magicGold hover:text-darkAcademia transition-all duration-500 gold-border-glow flex items-center gap-4">
-                    ENTER CASTLE <i class="fa-solid fa-door-open"></i>
+            <!-- Nút EXPLORE ở cổng chính -->
+            <div id="explore-btn-container" class="absolute bottom-12 md:bottom-20 z-30 opacity-0 scale-90">
+                <button id="explore-btn" class="font-header tracking-widest text-xl md:text-3xl text-magicGold border-2 border-magicGold px-10 py-4 bg-darkAcademia/90 rounded-md hover:bg-magicGold hover:text-darkAcademia transition-all duration-500 gold-border-glow flex items-center gap-4">
+                    EXPLORE <i class="fa-solid fa-key"></i>
                 </button>
             </div>
         </div>
 
-        <div id="scene-library" class="absolute inset-0 opacity-0 flex items-center justify-center bg-cover bg-center transition-transform duration-[3000ms] ease-out" style="background-image: linear-gradient(rgba(10, 7, 4, 0.8), rgba(5, 3, 2, 0.95)), url('theme 2. jpg');">
-            <div class="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(211,175,55,0.15)_0%,transparent_75%)]"></div>
+        <!-- Scene 5 & 6 & 7: Thư viện & Quyển sách cổ bay ra -->
+        <div id="scene-library" class="absolute inset-0 bg-[#070503] opacity-0 flex items-center justify-center">
+            <div class="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(211,175,55,0.08)_0%,transparent_70%)]"></div>
             
-            <div class="absolute top-1/4 left-1/4 candle w-3 h-16 bg-gradient-to-b from-[#ffeed1] to-magicGold/20 rounded-full blur-[0.5px]">
-                <div class="w-3 h-3 bg-orange-500 rounded-full blur-[2px] animate-pulse mx-auto -mt-2"></div>
+            <!-- Đèn dầu/Nến lung linh -->
+            <div class="absolute top-1/4 left-1/4 candle w-2 h-16 bg-magicGold/20 rounded-full blur-[1px]">
+                <div class="w-2 h-2 bg-orange-500 rounded-full blur-[3px] animate-pulse mx-auto -mt-2"></div>
             </div>
-            <div class="absolute top-1/3 right-1/4 candle w-3 h-20 bg-gradient-to-b from-[#ffeed1] to-magicGold/20 rounded-full blur-[0.5px]" style="animation-delay: -2s;">
-                <div class="w-3 h-3 bg-amber-400 rounded-full blur-[2px] animate-pulse mx-auto -mt-2"></div>
+            <div class="absolute top-1/3 right-1/4 candle w-2 h-20 bg-magicGold/20 rounded-full blur-[1px]" style="animation-delay: -2s;">
+                <div class="w-2 h-2 bg-amber-400 rounded-full blur-[3px] animate-pulse mx-auto -mt-2"></div>
             </div>
 
             <div class="text-center z-20 px-4">
-                <div id="accio-text" class="font-header text-3xl md:text-5xl text-magicGold tracking-widest gold-glow opacity-0 mb-10">
-                    "Accio Portfolio!"
+                <div id="accio-text" class="font-header text-4xl md:text-6xl text-magicGold tracking-widest gold-glow opacity-0 mb-8">
+                    "Accio Portfolio..."
                 </div>
                 
-                <div id="magic-book" class="w-72 h-96 mx-auto bg-gradient-to-r from-amber-950 to-[#3d2314] border-2 border-magicGold/60 rounded-r-lg rounded-l-md shadow-2xl relative flex items-center justify-center opacity-0 transform rotate-12 scale-75 transition-all duration-1000">
-                    <div class="absolute inset-y-1 left-3 right-1.5 bg-[#f5eeda] rounded-r-md shadow-inner flex flex-col justify-between p-6 text-darkAcademia border-l-4 border-amber-900/30">
+                <!-- Mô phỏng Quyển sách Ma thuật tự lật trang -->
+                <div id="magic-book" class="w-64 h-80 mx-auto bg-gradient-to-r from-amber-950 to-[#3d2314] border-2 border-magicGold/40 rounded-r-md rounded-l-sm shadow-2xl relative flex items-center justify-center opacity-0 transform rotate-12 scale-75">
+                    <div class="absolute inset-y-1 left-2 right-1 bg-[#fcf8f2] rounded shadow-inner flex flex-col justify-between p-4 text-darkAcademia">
                         <div class="border-b border-amber-900/20 pb-2">
-                            <span class="font-header text-xs text-amber-900 tracking-widest">CHAPTER I</span>
+                            <span class="font-header text-xs text-amber-900">CHAPTER I</span>
                         </div>
-                        <div class="my-auto text-center space-y-4">
-                            <i class="fa-solid fa-feather-pointed text-4xl text-amber-900/70 animate-bounce"></i>
-                            <p class="font-body italic text-sm text-amber-900/90 leading-relaxed font-semibold">
-                                Đang giải mã lưu trữ thư tín của Nguyễn Khánh Linh...
-                            </p>
+                        <div class="my-auto">
+                            <i class="fa-solid fa-feather-pointed text-3xl text-amber-900/60 animate-bounce"></i>
+                            <p class="font-body italic text-xs mt-2 text-amber-900/80">Unlocking the archives of Nguyễn Khánh Linh...</p>
                         </div>
                         <div class="border-t border-amber-900/20 pt-2 text-right">
-                            <span class="font-body text-xs italic text-amber-900">Mở trang 1</span>
+                            <span class="font-body text-xs italic text-amber-900">Page 1</span>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
 
+        <!-- Màn che Flash trắng chuyển tiếp -->
         <div id="white-flash" class="absolute inset-0 bg-white opacity-0 pointer-events-none z-50"></div>
     </div>
 
-    <div id="portfolio-container" class="opacity-0 w-full min-h-screen relative z-20 bg-library">
+    <!-- ========================================================= -->
+    <!-- MAIN PORTFOLIO CONTENT -->
+    <!-- ========================================================= -->
+    <div id="portfolio-container" class="opacity-0 w-full min-h-screen relative z-20">
 
-        <nav class="fixed top-0 left-0 w-full z-40 bg-gradient-to-b from-[#100b07] to-transparent border-b border-magicGold/10 backdrop-blur-md">
+        <!-- THANH ĐIỀU HƯỚNG (NAVIGATION BAR) -->
+        <nav class="fixed top-0 left-0 w-full z-40 bg-gradient-to-b from-[#1a120b] to-transparent border-b border-magicGold/10 backdrop-blur-md">
             <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
                 <a href="#home" class="font-header text-xl text-magicGold tracking-widest gold-glow">NKL</a>
                 
+                <!-- Desktop Menu -->
                 <div class="hidden md:flex items-center gap-6 font-title text-sm tracking-wider">
                     <a href="#home" class="hover:text-magicGold hover:gold-glow transition-all">Home</a>
                     <a href="#about" class="hover:text-magicGold hover:gold-glow transition-all">About</a>
@@ -204,11 +218,13 @@
                     <a href="#contact" class="hover:text-magicGold hover:gold-glow transition-all">Contact</a>
                 </div>
                 
+                <!-- Mobile Menu Toggle -->
                 <button id="mobile-menu-toggle" class="md:hidden text-magicGold text-2xl">
                     <i class="fa-solid fa-bars"></i>
                 </button>
             </div>
             
+            <!-- Mobile Menu Dropdown -->
             <div id="mobile-menu" class="hidden md:hidden bg-darkAcademia/95 border-b border-magicGold/20 py-4 flex flex-col items-center gap-4 font-title text-sm">
                 <a href="#home" class="mobile-link py-1 hover:text-magicGold">Home</a>
                 <a href="#about" class="mobile-link py-1 hover:text-magicGold">About</a>
@@ -221,23 +237,27 @@
             </div>
         </nav>
 
-        <section id="home" class="min-h-screen pt-28 flex flex-col items-center justify-center text-center px-6 relative overflow-hidden">
+        <!-- HERO SECTION -->
+        <section id="home" class="min-h-screen pt-28 flex flex-col items-center justify-center text-center px-6 relative overflow-hidden bg-[radial-gradient(circle_at_center,rgba(40,24,12,0.5)_0%,transparent_80%)]">
             <div class="max-w-4xl z-20">
+                <!-- Avatar trong khung mạ vàng cổ điển -->
                 <div class="w-48 h-48 mx-auto rounded-full overflow-hidden gold-frame mb-8 hover:scale-105 transition-all duration-500">
-                    <img src="chandung.jpg" alt="Nguyễn Khánh Linh" class="w-full h-full object-cover object-top" />
+                    <img src="432f21901e6a9434cd7b.jpg" alt="Nguyễn Khánh Linh" class="w-full h-full object-cover object-top" /> <!-- Personal Photo Linked -->
                 </div>
                 
                 <p class="font-title text-magicGold uppercase tracking-widest text-sm mb-2">Welcome to the magical archives</p>
                 <h1 class="font-header text-3xl md:text-5xl text-parchment leading-tight tracking-wider mb-6">NGUYỄN KHÁNH LINH</h1>
                 
-                <p class="font-body text-xl md:text-2xl max-w-2xl mx-auto text-parchment/90 leading-relaxed italic">
-                    "Tôi là sinh viên có niềm đamêm với phân tích dữ liệu và nghiên cứu kinh tế, luôn mong muốn biến dữ liệu thành những thông tin có giá trị để hỗ trợ việc ra quyết định. Tôi yêu thích việc kết hợp tư duy phân tích, kiến thức kinh tế và các công cụ xử lý dữ liệu để khám phá xu hướng, giải quyết vấn đề và tạo ra những giải pháp thực tiễn."
+                <!-- Custom intro alignment -->
+                <p class="font-body text-xl md:text-2xl max-w-2xl mx-auto text-parchment/80 leading-relaxed italic">
+                    "Tôi là sinh viên chuyên ngành Kinh tế quốc tế trường Đại học Ngoại thương. Đam mê phân tích dữ liệu, nghiên cứu kinh tế và thiết kế truyền thông. Tôi luôn mong muốn biến dữ liệu khô khan thành những câu chuyện hình ảnh có giá trị thực tiễn."
                 </p>
                 
                 <div class="mt-8 flex justify-center gap-6 text-2xl">
                     <a href="https://github.com/linh-go-star" class="text-parchment/60 hover:text-magicGold transition-colors duration-300"><i class="fa-brands fa-github"></i></a>
                     <a href="https://www.facebook.com/linh.khanh.111050" class="text-parchment/60 hover:text-magicGold transition-colors duration-300"><i class="fa-brands fa-facebook"></i></a>
                     <a href="mailto:k63.2415410095@ftu.edu.vn" class="text-parchment/60 hover:text-magicGold transition-colors duration-300"><i class="fa-solid fa-envelope"></i></a>
+                    <a href="#" class="text-parchment/60 hover:text-magicGold transition-colors duration-300"><i class="fa-brands fa-linkedin"></i></a>
                 </div>
 
                 <div class="mt-12 animate-bounce">
@@ -249,6 +269,7 @@
             </div>
         </section>
 
+        <!-- ABOUT ME SECTION -->
         <section id="about" class="min-h-screen py-24 px-6 max-w-6xl mx-auto flex flex-col justify-center">
             <div class="text-center mb-16">
                 <span class="font-body italic text-magicGold">"The wand chooses the wizard..."</span>
@@ -257,33 +278,35 @@
             </div>
             
             <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+                <!-- Khung chân dung lớn -->
                 <div class="w-full max-w-sm mx-auto gold-frame rounded-md overflow-hidden bg-darkAcademia">
-                    <img src="chandung.jpg" alt="Nguyễn Khánh Linh" class="w-full h-auto object-cover" />
+                    <img src="432f21901e6a9434cd7b.jpg" alt="Nguyễn Khánh Linh" class="w-full h-auto object-cover" /> <!-- Personal Photo -->
                 </div>
                 
                 <div class="space-y-6">
                     <div class="border-l-2 border-magicGold pl-6 space-y-2">
-                        <p class="font-title text-lg text-magicGold">Sinh viên K63 - Đại học Ngoại thương (FTU)</p>
-                        <p class="font-body text-xl text-parchment/90">Chuyên ngành: <strong class="text-magicGold">Kinh tế quốc tế</strong></p>
+                        <p class="font-title text-lg text-magicGold">Sinh viên K63 - Đại học Ngoại thương (FTU)</p> <!-- Student details -->
+                        <p class="font-body text-xl text-parchment/90">Chuyên ngành: <strong class="text-magicGold">Kinh tế quốc tế</strong></p> <!-- Major details -->
                     </div>
 
                     <div class="parchment-card p-6 rounded-md space-y-3">
                         <h3 class="font-title text-magicGold tracking-wider"><i class="fa-solid fa-compass-drafting mr-2"></i> Mục tiêu nghề nghiệp</h3>
                         <p class="font-body text-lg text-parchment/80 leading-relaxed">
-                            Trở thành một **Marketing Designer** với khả năng kết hợp tư duy sáng tạo và thiết kế để tạo ra những sản phẩm truyền thông hiệu quả. Không ngừng học hỏi, nâng cao chuyên môn và đóng góp giá trị cho thương hiệu thông qua những thiết kế chất lượng.
+                            Trở thành một **Marketing Designer** với khả năng kết hợp tư duy phân tích sắc bén và khả năng sáng tạo không giới hạn. Không ngừng học hỏi để tạo ra các thiết kế truyền thông tối ưu cả mặt thẩm mỹ lẫn thông điệp thực tiễn.
                         </p>
                     </div>
 
                     <div class="parchment-card p-6 rounded-md space-y-3">
                         <h3 class="font-title text-magicGold tracking-wider"><i class="fa-solid fa-scale-balanced mr-2"></i> Giá trị theo đuổi</h3>
                         <p class="font-body text-lg text-parchment/80 leading-relaxed">
-                            Tôi theo đuổi sự sáng tạo, trách nhiệm và không ngừng học hỏi. Tôi tin rằng một thiết kế tốt không chỉ đẹp về hình thức mà còn phải truyền tải đúng thông điệp và mang lại giá trị cho người xem.
+                            Sáng tạo, Trách nhiệm và Không ngừng cải tiến. Một thiết kế hoàn mỹ không chỉ đẹp về mặt hình thức mà còn phải chuyển đổi thành giá trị thực chất cho người tiếp nhận.
                         </p>
                     </div>
                 </div>
             </div>
         </section>
 
+        <!-- SKILLS SECTION -->
         <section id="skills" class="min-h-screen py-24 px-6 max-w-6xl mx-auto flex flex-col justify-center">
             <div class="text-center mb-16">
                 <span class="font-body italic text-magicGold">"Sorting Hat's choice of magic..."</span>
@@ -292,6 +315,7 @@
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Programming Magic -->
                 <div class="parchment-card p-8 rounded-md relative overflow-hidden group">
                     <div class="absolute -right-4 -bottom-4 opacity-10 text-magicGold text-8xl transition-all duration-500 group-hover:scale-110">
                         <i class="fa-solid fa-terminal"></i>
@@ -304,6 +328,7 @@
                     </ul>
                 </div>
 
+                <!-- Design Alchemy -->
                 <div class="parchment-card p-8 rounded-md relative overflow-hidden group">
                     <div class="absolute -right-4 -bottom-4 opacity-10 text-magicGold text-8xl transition-all duration-500 group-hover:scale-110">
                         <i class="fa-solid fa-palette"></i>
@@ -312,28 +337,30 @@
                     <ul class="space-y-3 font-body text-xl">
                         <li class="flex items-center gap-3"><i class="fa-solid fa-wand-sparkles text-magicGold text-sm"></i> Adobe Photoshop</li>
                         <li class="flex items-center gap-3"><i class="fa-solid fa-wand-sparkles text-magicGold text-sm"></i> Adobe Illustrator</li>
-                        <li class="flex items-center gap-3"><i class="fa-solid fa-wand-sparkles text-magicGold text-sm"></i> Figma</li>
-                        <li class="flex items-center gap-3"><i class="fa-solid fa-wand-sparkles text-magicGold text-sm"></i> Capcut</li>
+                        <li class="flex items-center gap-3"><i class="fa-solid fa-wand-sparkles text-magicGold text-sm"></i> Figma Layouts</li>
+                        <li class="flex items-center gap-3"><i class="fa-solid fa-wand-sparkles text-magicGold text-sm"></i> Capcut & Video Editing</li>
                         <li class="flex items-center gap-3"><i class="fa-solid fa-wand-sparkles text-magicGold text-sm"></i> Epik & Picsart</li>
                     </ul>
                 </div>
 
+                <!-- Charisma & Leadership -->
                 <div class="parchment-card p-8 rounded-md relative overflow-hidden group">
                     <div class="absolute -right-4 -bottom-4 opacity-10 text-magicGold text-8xl transition-all duration-500 group-hover:scale-110">
                         <i class="fa-solid fa-handshake"></i>
                     </div>
                     <h3 class="font-title text-xl text-magicGold border-b border-magicGold/20 pb-4 mb-6"><i class="fa-solid fa-users mr-2"></i> Soft Skills</h3>
                     <ul class="space-y-4 font-body text-xl">
-                        <li class="flex items-center gap-3"><i class="fa-solid fa-wand-sparkles text-magicGold text-sm"></i> Leadership</li>
-                        <li class="flex items-center gap-3"><i class="fa-solid fa-wand-sparkles text-magicGold text-sm"></i> Communication</li>
+                        <li class="flex items-center gap-3"><i class="fa-solid fa-wand-sparkles text-magicGold text-sm"></i> Project Leadership</li>
+                        <li class="flex items-center gap-3"><i class="fa-solid fa-wand-sparkles text-magicGold text-sm"></i> Media & Communication</li>
                         <li class="flex items-center gap-3"><i class="fa-solid fa-wand-sparkles text-magicGold text-sm"></i> Problem Solving</li>
                         <li class="flex items-center gap-3"><i class="fa-solid fa-wand-sparkles text-magicGold text-sm"></i> Critical Thinking</li>
-                        <li class="flex items-center gap-3"><i class="fa-solid fa-wand-sparkles text-magicGold text-sm"></i> Teamwork</li>
+                        <li class="flex items-center gap-3"><i class="fa-solid fa-wand-sparkles text-magicGold text-sm"></i> Teamwork & Harmony</li>
                     </ul>
                 </div>
             </div>
         </section>
 
+        <!-- EXPERIENCE TIMELINE -->
         <section id="experience" class="min-h-screen py-24 px-6 max-w-4xl mx-auto">
             <div class="text-center mb-16">
                 <span class="font-body italic text-magicGold">"Great accomplishments leave trails..."</span>
@@ -341,28 +368,31 @@
                 <div class="h-[1px] w-32 bg-gradient-to-r from-transparent via-magicGold to-transparent mx-auto mt-4"></div>
             </div>
 
+            <!-- Timeline -->
             <div class="relative border-l border-magicGold/30 ml-4 md:ml-8 space-y-12">
                 
+                <!-- Experience 1 -->
                 <div class="relative pl-8 group">
                     <div class="absolute -left-2 top-1.5 w-4 h-4 rounded-full bg-magicGold border border-darkAcademia shadow-[0_0_8px_#d4af37] z-10"></div>
-                    <span class="font-title text-magicGold text-sm tracking-widest">2024 - NAY</span>
-                    <h3 class="font-header text-2xl text-parchment mt-1">Gia sư – partime</h3>
+                    <span class="font-title text-magicGold text-sm tracking-widest">2024 - PRESENT</span>
+                    <h3 class="font-header text-2xl text-parchment mt-1">Gia Sư Học Thuật (Part-time)</h3>
+                    <p class="font-body text-lg text-parchment/60 italic">Giảng dạy & Huấn luyện học sinh THCS & THPT</p>
                     
                     <button class="toggle-details text-magicGold font-title text-sm mt-3 hover:underline flex items-center gap-1 focus:outline-none">
                         <span>Chi tiết</span> <i class="fa-solid fa-chevron-right text-xs"></i>
                     </button>
                     <div class="details-content max-h-0 overflow-hidden transition-all duration-500 ease-in-out mt-4">
                         <ul class="space-y-2 font-body text-lg text-parchment/80 pl-4 list-disc marker:text-magicGold">
-                            <li>Giảng dạy các môn học cho học sinh THCS và THPT.</li>
-                            <li>Xây dựng lộ trình học tập phù hợp với năng lực của từng học sinh.</li>
-                            <li>Rèn luyện kỹ năng giao tiếp, truyền đạt và giải quyết vấn đề trong quá trình giảng dạy.</li>
+                            <li>Xây dựng kế hoạch giảng dạy cá nhân hóa phù hợp với năng lực từng học sinh để tối ưu hóa kết quả.</li>
+                            <li>Nâng cao kỹ năng sư phạm, truyền đạt thông tin phức tạp một cách dễ hiểu nhất.</li>
                         </ul>
                     </div>
                 </div>
 
+                <!-- Experience 2 -->
                 <div class="relative pl-8 group">
                     <div class="absolute -left-2 top-1.5 w-4 h-4 rounded-full bg-magicGold border border-darkAcademia shadow-[0_0_8px_#d4af37] z-10"></div>
-                    <span class="font-title text-magicGold text-sm tracking-widest">2025 - NAY</span>
+                    <span class="font-title text-magicGold text-sm tracking-widest">2025 - PRESENT</span>
                     <h3 class="font-header text-2xl text-parchment mt-1">Enactus FTU Hà Nội</h3>
                     <p class="font-body text-lg text-parchment/60 italic">Ban Truyền thông | Marketing Designer & Content Creator</p>
                     
@@ -371,31 +401,27 @@
                     </button>
                     <div class="details-content max-h-0 overflow-hidden transition-all duration-500 ease-in-out mt-4">
                         <ul class="space-y-2 font-body text-lg text-parchment/80 pl-4 list-disc marker:text-magicGold">
-                            <li>Thiết kế các ấn phẩm truyền thông cho chiến dịch tuyển thành viên và các sự kiện của câu lạc bộ.</li>
-                            <li>Lên ý tưởng và xây dựng nội dung cho các bài đăng trên Facebook, Instagram và các kênh truyền thông của CLB.</li>
-                            <li>Phối hợp cùng các thành viên để đảm bảo sự thống nhất giữa nội dung và hình ảnh trong các chiến dịch truyền thông.</li>
-                            <li>Đảm nhiệm vai trò Leader Marketing cho 2/4 sự kiện trọng điểm của câu lạc bộ, phụ trách xây dựng kế hoạch truyền thông, phân công công việc, quản lý tiến độ và phối hợp với các thành viên để triển khai chiến dịch hiệu quả.</li>
-                            <li>Tham gia xây dựng và phát triển hình ảnh thương hiệu của Enactus FTU Hà Nội thông qua các hoạt động truyền thông sáng tạo.</li>
-                            <li>Tăng hơn 1.000 lượt theo dõi trên nền tảng Facebook trong vòng 2 tháng thông qua việc xây dựng và triển khai chiến lược nội dung và truyền thông.</li>
+                            <li>Thiết kế ấn phẩm truyền thông cho các chiến dịch tuyển thành viên lớn (Tuyển Gen) và các sự kiện quy mô của CLB.</li>
+                            <li>Chịu trách nhiệm vai trò <strong>Marketing Leader</strong> cho 2/4 sự kiện trọng điểm, quản lý tiến độ thiết kế và phân bổ công việc hiệu quả.</li>
+                            <li>Tăng hơn **1.000 lượt theo dõi** tự nhiên trên Facebook trong vòng 2 tháng qua kế hoạch nội dung sáng tạo.</li>
                         </ul>
                     </div>
                 </div>
 
+                <!-- Experience 3 -->
                 <div class="relative pl-8 group">
                     <div class="absolute -left-2 top-1.5 w-4 h-4 rounded-full bg-magicGold border border-darkAcademia shadow-[0_0_8px_#d4af37] z-10"></div>
-                    <span class="font-title text-magicGold text-sm tracking-widest">2025 - NAY</span>
+                    <span class="font-title text-magicGold text-sm tracking-widest">2025 - PRESENT</span>
                     <h3 class="font-header text-2xl text-parchment mt-1">Vietnam Social Innovation Challenge (VSIC)</h3>
-                    <p class="font-body text-lg text-parchment/60 italic">Ban Marketing</p>
+                    <p class="font-body text-lg text-parchment/60 italic">Ban Marketing | Thiết kế ấn phẩm</p>
                     
                     <button class="toggle-details text-magicGold font-title text-sm mt-3 hover:underline flex items-center gap-1 focus:outline-none">
                         <span>Chi tiết</span> <i class="fa-solid fa-chevron-right text-xs"></i>
                     </button>
                     <div class="details-content max-h-0 overflow-hidden transition-all duration-500 ease-in-out mt-4">
                         <ul class="space-y-2 font-body text-lg text-parchment/80 pl-4 list-disc marker:text-magicGold">
-                            <li>Thiết kế các ấn phẩm truyền thông cho các chiến dịch quảng bá và sự kiện.</li>
-                            <li>Xây dựng hình ảnh truyền thông theo bộ nhận diện của chương trình.</li>
-                            <li>Phối hợp với đội ngũ Marketing triển khai các hoạt động truyền thông trên nhiều nền tảng.</li>
-                            <li>Hỗ trợ thiết kế các tài liệu và ấn phẩm phục vụ sự kiện.</li>
+                            <li>Xây dựng hệ thống nhận diện trực quan cho chiến dịch quảng bá chương trình sáng kiến xã hội.</li>
+                            <li>Thiết kế hệ thống tài liệu và quà tặng cho cuộc thi, tối ưu hóa mức độ nhận diện thương hiệu trên đa nền tảng.</li>
                         </ul>
                     </div>
                 </div>
@@ -403,6 +429,7 @@
             </div>
         </section>
 
+        <!-- PROJECTS GRID -->
         <section id="projects" class="min-h-screen py-24 px-6 max-w-6xl mx-auto">
             <div class="text-center mb-16">
                 <span class="font-body italic text-magicGold">"Chamber of secrets unveiled..."</span>
@@ -411,15 +438,16 @@
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <!-- Project 1 -->
                 <div class="parchment-card rounded-md overflow-hidden flex flex-col justify-between group">
-                    <div class="h-48 bg-gradient-to-br from-amber-950 to-[#100702] flex items-center justify-center relative overflow-hidden">
+                    <div class="h-48 bg-gradient-to-br from-amber-950 to-deepForest flex items-center justify-center relative overflow-hidden">
                         <i class="fa-solid fa-scroll text-6xl text-magicGold/20 group-hover:scale-110 transition-all duration-500"></i>
-                        <span class="absolute top-4 right-4 bg-magicGold/10 border border-magicGold/30 text-magicGold text-xs font-title px-3 py-1 rounded">Media Campaign</span>
+                        <span class="absolute top-4 right-4 bg-magicGold/10 border border-magicGold text-magicGold text-xs font-title px-3 py-1 rounded">Visual Campaign</span>
                     </div>
                     <div class="p-6 space-y-4">
                         <h3 class="font-header text-2xl text-magicGold">Enactus Recruitment Visuals</h3>
                         <p class="font-body text-lg text-parchment/80">
-                            Hệ thống ấn phẩm và hình ảnh nhận diện cốt lõi phục vụ chiến dịch "Tuyển Gen" định hướng của Enactus FTU Hà Nội.
+                            Bộ nhận diện hình ảnh cho các chiến dịch tuyển Gen thuộc Enactus FTU Hà Nội, mang phong cách độc bản.
                         </p>
                         <div class="flex flex-wrap gap-2 text-xs font-title text-parchment/60">
                             <span class="bg-darkAcademia px-2 py-1 rounded border border-magicGold/20">Figma</span>
@@ -431,15 +459,16 @@
                     </div>
                 </div>
 
+                <!-- Project 2 -->
                 <div class="parchment-card rounded-md overflow-hidden flex flex-col justify-between group">
                     <div class="h-48 bg-gradient-to-br from-[#2b1704] to-[#120a04] flex items-center justify-center relative overflow-hidden">
                         <i class="fa-solid fa-chart-line text-6xl text-magicGold/20 group-hover:scale-110 transition-all duration-500"></i>
-                        <span class="absolute top-4 right-4 bg-magicGold/10 border border-magicGold/30 text-magicGold text-xs font-title px-3 py-1 rounded">Research</span>
+                        <span class="absolute top-4 right-4 bg-magicGold/10 border border-magicGold text-magicGold text-xs font-title px-3 py-1 rounded">Research Project</span>
                     </div>
                     <div class="p-6 space-y-4">
                         <h3 class="font-header text-2xl text-magicGold">International Economics Analysis</h3>
                         <p class="font-body text-lg text-parchment/80">
-                            Mô hình phân tích dữ liệu kinh tế quốc tế, đánh giá luồng giao dịch và chính sách thương mại liên kết.
+                            Công trình phân tích dữ liệu kinh tế vĩ mô và dự báo xu hướng thương mại toàn cầu của sinh viên FTU.
                         </p>
                         <div class="flex flex-wrap gap-2 text-xs font-title text-parchment/60">
                             <span class="bg-darkAcademia px-2 py-1 rounded border border-magicGold/20">Python</span>
@@ -453,6 +482,7 @@
             </div>
         </section>
 
+        <!-- ACHIEVEMENTS SECTION -->
         <section id="achievements" class="min-h-screen py-24 px-6 max-w-6xl mx-auto flex flex-col justify-center">
             <div class="text-center mb-16">
                 <span class="font-body italic text-magicGold">"Order of Merlin decorations..."</span>
@@ -461,6 +491,7 @@
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
+                <!-- MOS Word -->
                 <div class="parchment-card p-6 rounded-md text-center flex flex-col justify-between items-center group">
                     <div class="w-16 h-16 rounded-full bg-magicGold/10 border border-magicGold/40 flex items-center justify-center text-magicGold text-2xl mb-4 group-hover:rotate-12 transition-transform duration-300">
                         <i class="fa-solid fa-file-word"></i>
@@ -469,6 +500,7 @@
                     <p class="font-body text-parchment/80 text-sm">Microsoft Office Specialist<br>(Office 2019)</p>
                 </div>
 
+                <!-- MOS Excel -->
                 <div class="parchment-card p-6 rounded-md text-center flex flex-col justify-between items-center group">
                     <div class="w-16 h-16 rounded-full bg-magicGold/10 border border-magicGold/40 flex items-center justify-center text-magicGold text-2xl mb-4 group-hover:rotate-12 transition-transform duration-300">
                         <i class="fa-solid fa-file-excel"></i>
@@ -477,24 +509,27 @@
                     <p class="font-body text-parchment/80 text-sm">Microsoft Office Specialist<br>(Office 2019)</p>
                 </div>
 
+                <!-- MOS PPT -->
                 <div class="parchment-card p-6 rounded-md text-center flex flex-col justify-between items-center group">
                     <div class="w-16 h-16 rounded-full bg-magicGold/10 border border-magicGold/40 flex items-center justify-center text-magicGold text-2xl mb-4 group-hover:rotate-12 transition-transform duration-300">
                         <i class="fa-solid fa-file-powerpoint"></i>
                     </div>
-                    <h3 class="font-title text-sm text-magicGold uppercase tracking-wider mb-2">PowerPoint Associate</h3>
+                    <h3 class="font-title text-sm text-magicGold uppercase tracking-wider mb-2">PowerPoint</h3>
                     <p class="font-body text-parchment/80 text-sm">Microsoft Office Specialist<br>(Office 2019)</p>
                 </div>
 
+                <!-- English -->
                 <div class="parchment-card p-6 rounded-md text-center flex flex-col justify-between items-center group">
                     <div class="w-16 h-16 rounded-full bg-magicGold/10 border border-magicGold/40 flex items-center justify-center text-magicGold text-2xl mb-4 group-hover:rotate-12 transition-transform duration-300">
                         <i class="fa-solid fa-language"></i>
                     </div>
                     <h3 class="font-title text-sm text-magicGold uppercase tracking-wider mb-2">English B2</h3>
-                    <p class="font-body text-parchment/80 text-sm">CEFR Level Standards</p>
+                    <p class="font-body text-parchment/80 text-sm">CEFR Standard Proficiency</p>
                 </div>
             </div>
         </section>
 
+        <!-- EDUCATION SECTION -->
         <section id="education" class="min-h-screen py-24 px-6 max-w-4xl mx-auto">
             <div class="text-center mb-16">
                 <span class="font-body italic text-magicGold">"Ancient scrolls of learning..."</span>
@@ -502,23 +537,26 @@
                 <div class="h-[1px] w-32 bg-gradient-to-r from-transparent via-magicGold to-transparent mx-auto mt-4"></div>
             </div>
 
+            <!-- Education Timeline -->
             <div class="space-y-12">
+                <!-- FTU -->
                 <div class="parchment-card p-8 rounded-md border-l-4 border-magicGold flex flex-col md:flex-row justify-between items-start md:items-center gap-6">
                     <div>
-                        <span class="font-title text-sm text-magicGold tracking-widest">2024 - NAY</span>
-                        <h3 class="font-header text-2xl text-parchment mt-1">Trường: Đại học Ngoại thương</h3>
-                        <p class="font-body text-xl text-parchment/80 mt-1">Chuyên ngành: <strong class="text-magicGold">Kinh tế quốc tế</strong></p>
+                        <span class="font-title text-sm text-magicGold tracking-widest">2024 - PRESENT</span>
+                        <h3 class="font-header text-2xl text-parchment mt-1">Trường Đại học Ngoại thương (FTU)</h3>
+                        <p class="font-body text-xl text-parchment/80 mt-1">Chuyên ngành: <strong class="text-magicGold">Kinh tế quốc tế</strong></p> <!-- Major -->
                     </div>
                     <div class="bg-magicGold/10 border border-magicGold/40 text-magicGold text-xs font-title px-4 py-2 rounded">
                         Hanoi, Vietnam
                     </div>
                 </div>
 
-                <div class="parchment-card p-8 rounded-md border-l-4 border-magicGold/35 flex flex-col md:flex-row justify-between items-start md:items-center gap-6">
+                <!-- K12 -->
+                <div class="parchment-card p-8 rounded-md border-l-4 border-magicGold/30 flex flex-col md:flex-row justify-between items-start md:items-center gap-6">
                     <div>
-                        <span class="font-title text-sm text-magicGold/60 tracking-widest">2011-2024</span>
-                        <h3 class="font-header text-2xl text-parchment mt-1">Lớp 1-12</h3>
-                        <p class="font-body text-xl text-parchment/80 mt-1">Quá trình rèn luyện phổ thông</p>
+                        <span class="font-title text-sm text-magicGold/60 tracking-widest">2011 - 2024</span>
+                        <h3 class="font-header text-2xl text-parchment mt-1">Lớp 1 - 12 Học tập & Rèn luyện</h3>
+                        <p class="font-body text-xl text-parchment/80 mt-1">Đạt nhiều thành tích nổi bật học sinh giỏi</p>
                     </div>
                     <div class="bg-magicGold/5 border border-magicGold/20 text-magicGold/60 text-xs font-title px-4 py-2 rounded">
                         Tỉnh Hưng Yên
@@ -527,6 +565,7 @@
             </div>
         </section>
 
+        <!-- CONTACT SECTION (OWL POST) -->
         <section id="contact" class="min-h-screen py-24 px-6 max-w-4xl mx-auto flex flex-col justify-center">
             <div class="text-center mb-16">
                 <span class="font-body italic text-magicGold">"Send your dispatch via Owl..."</span>
@@ -535,9 +574,10 @@
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+                <!-- Thông tin liên lạc -->
                 <div class="space-y-6 flex flex-col justify-center">
                     <p class="font-body text-xl text-parchment/80 leading-relaxed">
-                        Hãy gửi một chú cú mang theo lời nhắn nếu bạn muốn hợp tác cùng tôi trong các dự án Marketing, thiết kế sáng tạo hoặc nghiên cứu vĩ mô!
+                        Bạn muốn thực hiện một dự án thiết kế, truyền thông cùng tôi hay chỉ đơn giản là trao đổi về phân tích kinh tế? Đừng ngần ngại gửi thư cú nhé!
                     </p>
                     
                     <div class="space-y-4 font-title text-sm text-magicGold">
@@ -551,23 +591,24 @@
                         </div>
                         <div class="flex items-center gap-4">
                             <div class="w-10 h-10 rounded-full border border-magicGold/20 flex items-center justify-center"><i class="fa-brands fa-facebook"></i></div>
-                            <a href="https://www.facebook.com/linh.khanh.111050" class="text-parchment hover:text-magicGold underline">facebook.com/linh.khanh.111050</a>
+                            <a href="https://www.facebook.com/linh.khanh.111050" class="text-parchment hover:text-magicGold underline">fb.me/linh.khanh.111050</a>
                         </div>
                     </div>
                 </div>
 
+                <!-- Thư tín (Form) -->
                 <form id="owl-mail-form" class="parchment-card p-8 rounded-md space-y-6 relative transition-transform duration-1000 origin-center">
                     <div class="space-y-2">
                         <label class="font-title text-xs text-magicGold uppercase tracking-widest block">Tên pháp sư / Nhà tuyển dụng</label>
-                        <input type="text" required class="w-full bg-[#120a04]/90 border border-magicGold/30 rounded p-3 text-parchment focus:border-magicGold focus:outline-none transition-colors">
+                        <input type="text" required class="w-full bg-[#120a04] border border-magicGold/30 rounded p-3 text-parchment focus:border-magicGold focus:outline-none transition-colors">
                     </div>
                     <div class="space-y-2">
                         <label class="font-title text-xs text-magicGold uppercase tracking-widest block">Địa chỉ thư tín (Email)</label>
-                        <input type="email" required class="w-full bg-[#120a04]/90 border border-magicGold/30 rounded p-3 text-parchment focus:border-magicGold focus:outline-none transition-colors">
+                        <input type="email" required class="w-full bg-[#120a04] border border-magicGold/30 rounded p-3 text-parchment focus:border-magicGold focus:outline-none transition-colors">
                     </div>
                     <div class="space-y-2">
                         <label class="font-title text-xs text-magicGold uppercase tracking-widest block">Nội dung mật thư</label>
-                        <textarea rows="4" required class="w-full bg-[#120a04]/90 border border-magicGold/30 rounded p-3 text-parchment focus:border-magicGold focus:outline-none transition-colors"></textarea>
+                        <textarea rows="4" required class="w-full bg-[#120a04] border border-magicGold/30 rounded p-3 text-parchment focus:border-magicGold focus:outline-none transition-colors"></textarea>
                     </div>
                     
                     <button type="submit" id="send-btn" class="w-full bg-magicGold text-darkAcademia font-header tracking-widest py-4 rounded hover:bg-white hover:text-black transition-all duration-300 font-bold flex items-center justify-center gap-3">
@@ -577,11 +618,18 @@
             </div>
         </section>
 
-        <footer class="bg-[#050302] border-t border-magicGold/10 py-12 px-6 text-center relative overflow-hidden">
+        <!-- FOOTER -->
+        <footer class="bg-[#080503] border-t border-magicGold/10 py-12 px-6 text-center relative overflow-hidden">
             <div class="max-w-6xl mx-auto space-y-6 z-20 relative">
-                <h2 class="font-header text-lg text-magicGold tracking-widest">NGUYỄN KHÁNH LINH • PORTFOLIO</h2>
+                <h2 class="font-header text-lg text-magicGold tracking-widest">NGUYỄN KHÁNH LINH • MARKETING DESIGNER</h2>
                 <p class="font-body text-sm text-parchment/40">© 2026. Designed with magic & data. All rights reserved.</p>
                 
+                <div class="flex justify-center gap-6 text-lg text-parchment/50">
+                    <a href="https://github.com/linh-go-star" class="hover:text-magicGold"><i class="fa-brands fa-github"></i></a>
+                    <a href="https://www.facebook.com/linh.khanh.111050" class="hover:text-magicGold"><i class="fa-brands fa-facebook"></i></a>
+                    <a href="#" class="hover:text-magicGold"><i class="fa-brands fa-linkedin"></i></a>
+                </div>
+
                 <button id="back-to-top" class="font-title text-xs text-magicGold hover:gold-glow tracking-widest uppercase flex items-center gap-2 mx-auto pt-4 focus:outline-none">
                     <i class="fa-solid fa-wand-magic-sparkles"></i> Apparate to Top (Back to Top)
                 </button>
@@ -590,10 +638,18 @@
 
     </div>
 
+    <!-- ========================================================= -->
+    <!-- INTERACTIVE SCRIPTING -->
+    <!-- ========================================================= -->
     <script>
-        // --- WEB AUDIO API (Synthesizing Magical Ambient Tracks) ---
+        // Kích hoạt GSAP ScrollTrigger
+        gsap.registerPlugin(ScrollTrigger);
+
+        // --- WEB AUDIO API ENGINE (Synthesizing Magical Ambient Tracks) ---
+        // Giúp phát ra các âm thanh ma thuật chân thực mà không cần nạp file mp3 ngoài bị lỗi link.
         let audioCtx = null;
         let windNoiseNode = null;
+        let fireNoiseNode = null;
         let isMuted = true;
 
         function createNoiseBuffer() {
@@ -611,13 +667,14 @@
             if (audioCtx) return;
             audioCtx = new (window.AudioContext || window.webkitAudioContext)();
             
+            // Thiết kế tiếng Gió rít (Wind Sound Synthesis)
             const windFilter = audioCtx.createBiquadFilter();
             windFilter.type = 'bandpass';
-            windFilter.frequency.value = 350;
-            windFilter.Q.value = 1.8;
+            windFilter.frequency.value = 400;
+            windFilter.Q.value = 2.0;
 
             const windGain = audioCtx.createGain();
-            windGain.gain.value = isMuted ? 0 : 0.05;
+            windGain.gain.value = isMuted ? 0 : 0.08;
 
             const buffer = createNoiseBuffer();
             if (buffer) {
@@ -630,22 +687,24 @@
                 windNoiseNode.start();
             }
 
+            // Biến điệu tiếng gió theo thời gian cho chân thật
             setInterval(() => {
                 if (audioCtx && !isMuted) {
-                    windFilter.frequency.setValueAtTime(250 + Math.random() * 250, audioCtx.currentTime);
+                    windFilter.frequency.setValueAtTime(300 + Math.random() * 300, audioCtx.currentTime);
                 }
-            }, 2000);
+            }, 1500);
         }
 
         function playSpellSound() {
             if (!audioCtx || isMuted) return;
+            // Tiếng gõ/nhạc phép thuật bay bổng (Arpeggio Synth)
             const now = audioCtx.currentTime;
             const osc = audioCtx.createOscillator();
             const gain = audioCtx.createGain();
             osc.type = 'triangle';
-            osc.frequency.setValueAtTime(660, now);
-            osc.frequency.exponentialRampToValueAtTime(1320, now + 0.4);
-            gain.gain.setValueAtTime(0.08, now);
+            osc.frequency.setValueAtTime(880, now);
+            osc.frequency.exponentialRampToValueAtTime(1760, now + 0.4);
+            gain.gain.setValueAtTime(0.1, now);
             gain.gain.exponentialRampToValueAtTime(0.01, now + 0.5);
             osc.connect(gain);
             gain.connect(audioCtx.destination);
@@ -653,6 +712,7 @@
             osc.stop(now + 0.5);
         }
 
+        // Điều khiển âm thanh
         const soundBtn = document.getElementById('sound-toggle');
         soundBtn.addEventListener('click', () => {
             isMuted = !isMuted;
@@ -668,7 +728,7 @@
             }
         });
 
-        // --- CANVAS: HẠT BỤI PHÉP THUẬT BAY BỔNG ---
+        // --- CANVAS 1: HẠT BỤI PHÉP THUẬT BAY BỔNG TOÀN WEB ---
         const dustCanvas = document.getElementById('magic-dust-canvas');
         const dustCtx = dustCanvas.getContext('2d');
         let dustParticles = [];
@@ -687,11 +747,11 @@
             reset() {
                 this.x = Math.random() * dustCanvas.width;
                 this.y = Math.random() * dustCanvas.height;
-                this.size = Math.random() * 2.5 + 0.5;
-                this.speedX = Math.random() * 0.3 - 0.15;
-                this.speedY = Math.random() * -0.4 - 0.1;
-                this.alpha = Math.random() * 0.6 + 0.2;
-                this.glow = Math.random() > 0.75;
+                this.size = Math.random() * 2 + 0.5;
+                this.speedX = Math.random() * 0.4 - 0.2;
+                this.speedY = Math.random() * -0.5 - 0.1; // Bay từ dưới lên trên
+                this.alpha = Math.random() * 0.5 + 0.2;
+                this.glow = Math.random() > 0.8;
             }
             update() {
                 this.x += this.speedX;
@@ -706,7 +766,7 @@
                 dustCtx.globalAlpha = this.alpha;
                 dustCtx.fillStyle = this.glow ? '#d4af37' : '#f4ebd0';
                 if (this.glow) {
-                    dustCtx.shadowBlur = 8;
+                    dustCtx.shadowBlur = 10;
                     dustCtx.shadowColor = '#d4af37';
                 }
                 dustCtx.beginPath();
@@ -716,7 +776,7 @@
             }
         }
 
-        for (let i = 0; i < 65; i++) {
+        for (let i = 0; i < 60; i++) {
             dustParticles.push(new DustParticle());
         }
 
@@ -730,73 +790,144 @@
         }
         animateDust();
 
-        // --- HÀNH TRÌNH ĐIỆN ẢNH (GSAP CINEMATIC TIMELINE) ---
+        // --- CANVAS 2: HỒ ĐEN VÀ SƯƠNG MÙ HOGWARTS (LAKE CANVAS) ---
+        const lakeCanvas = document.getElementById('lake-canvas');
+        const lakeCtx = lakeCanvas.getContext('2d');
+        
+        function resizeLakeCanvas() {
+            lakeCanvas.width = window.innerWidth;
+            lakeCanvas.height = window.innerHeight;
+        }
+        resizeLakeCanvas();
+
+        let stars = [];
+        for (let i = 0; i < 100; i++) {
+            stars.push({
+                x: Math.random() * window.innerWidth,
+                y: Math.random() * (window.innerHeight * 0.6),
+                r: Math.random() * 1.5,
+                alpha: Math.random()
+            });
+        }
+
+        function drawLake() {
+            if (!lakeCanvas) return;
+            const w = lakeCanvas.width;
+            const h = lakeCanvas.height;
+            lakeCtx.clearRect(0, 0, w, h);
+
+            // Bầu trời đêm
+            const skyGrad = lakeCtx.createLinearGradient(0, 0, 0, h * 0.6);
+            skyGrad.addColorStop(0, '#020101');
+            skyGrad.addColorStop(1, '#1a0d04');
+            lakeCtx.fillStyle = skyGrad;
+            lakeCtx.fillRect(0, 0, w, h * 0.6);
+
+            // Vẽ sao lấp lánh
+            stars.forEach(s => {
+                lakeCtx.fillStyle = `rgba(244, 235, 208, ${s.alpha})`;
+                lakeCtx.beginPath();
+                lakeCtx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
+                lakeCtx.fill();
+                s.alpha += (Math.random() * 0.04 - 0.02);
+                if (s.alpha < 0.2) s.alpha = 0.2;
+                if (s.alpha > 1) s.alpha = 1;
+            });
+
+            // Vẽ Hồ Đen & sóng gợn nhẹ ở đáy
+            const waterGrad = lakeCtx.createLinearGradient(0, h * 0.6, 0, h);
+            waterGrad.addColorStop(0, '#0a0502');
+            waterGrad.addColorStop(1, '#020101');
+            lakeCtx.fillStyle = waterGrad;
+            lakeCtx.fillRect(0, h * 0.6, w, h * 0.4);
+
+            // Đường chân trời và sương mù
+            lakeCtx.fillStyle = 'rgba(13, 8, 5, 0.5)';
+            lakeCtx.fillRect(0, h * 0.58, w, h * 0.04);
+
+            requestAnimationFrame(drawLake);
+        }
+        drawLake();
+
+        // --- HÀNH TRÌNH ĐIỆN ẢNH (CINEMATIC INTRO CHỨNG MINH ĐẲNG CẤP) ---
         const tlIntro = gsap.timeline();
 
+        // Khởi động hành trình
         window.addEventListener('load', () => {
-            // Cảnh 1: Lời ngỏ biến mất
-            tlIntro.to("#scene-1 h2", { opacity: 1, duration: 2.5, ease: "power2.out", delay: 0.5 });
+            // Cảnh 1: Every great wizard has a story
+            tlIntro.to("#scene-1 h2", { opacity: 1, duration: 2, ease: "power2.out", delay: 1 });
             tlIntro.to("#scene-1 h2", { opacity: 0, duration: 1.5, ease: "power2.inOut", delay: 2 });
             
             // Cảnh 2 & 3: Lướt tới Hogwarts qua Hồ Đen
-            tlIntro.to("#scene-1", { display: "none" });
             tlIntro.to("#scene-lake", { opacity: 1, duration: 3, ease: "power1.inOut" });
-            tlIntro.fromTo("#scene-lake", { scale: 1.15 }, { scale: 1, duration: 4, ease: "power1.out" }, "-=3");
-            tlIntro.to("#explore-btn-container", { opacity: 1, scale: 1, duration: 1.5, ease: "back.out(1.5)" });
+            tlIntro.to("#explore-btn-container", { opacity: 1, scale: 1, duration: 1.5, ease: "back.out(1.7)" });
         });
 
-        // Click nút ENTER CASTLE
+        // Click nút EXPLORE
         document.getElementById('explore-btn').addEventListener('click', () => {
             playSpellSound();
             
             // Cảnh 4: Đi qua cánh cổng khổng lồ
-            gsap.to("#scene-lake", { scale: 1.4, opacity: 0, duration: 2.2, ease: "power2.inOut" });
+            gsap.to("#scene-lake", { opacity: 0, duration: 2, ease: "power2.inOut" });
+            gsap.to("#scene-library", { opacity: 1, duration: 2, ease: "power2.inOut", delay: 0.5 });
             
-            // Cảnh 5: Tiến vào thư viện cổ kính
-            gsap.fromTo("#scene-library", { scale: 0.85, opacity: 0 }, { scale: 1, opacity: 1, duration: 2.5, ease: "power2.inOut", delay: 0.3 });
+            // Cảnh 5 & 6: Triệu hồi "Accio Portfolio"
+            gsap.to("#accio-text", { opacity: 1, duration: 2, ease: "power3.out", delay: 1.5 });
+            gsap.to("#accio-text", { opacity: 0, duration: 1, ease: "power3.in", delay: 3.5 });
             
-            // Cảnh 6: Triệu hồi "Accio Portfolio"
-            gsap.to("#accio-text", { opacity: 1, duration: 2, ease: "power3.out", delay: 2 });
-            gsap.to("#accio-text", { opacity: 0, duration: 1, ease: "power3.in", delay: 4 });
-            
-            // Cảnh 7 & 8: Sách bay ra từ xa và mở ra trước mắt người xem
-            gsap.fromTo("#magic-book", 
-                { scale: 0.2, rotation: -45, opacity: 0 },
-                { scale: 1, rotation: 0, opacity: 1, duration: 2.8, ease: "power2.out", delay: 5, onStart: playSpellSound }
-            );
+            // Cảnh 7 & 8: Sách bay ra và mở tung
+            gsap.to("#magic-book", { 
+                opacity: 1, 
+                scale: 1, 
+                rotation: 0, 
+                duration: 2.5, 
+                ease: "power2.out", 
+                delay: 4.5,
+                onStart: () => {
+                    playSpellSound();
+                }
+            });
 
-            // Flash Trắng cực mạnh sang Portfolio chính
+            // Flash Trắng cực mạnh sang Portfolio
             gsap.to("#white-flash", { 
                 opacity: 1, 
-                duration: 1.5, 
-                delay: 8.2, 
+                duration: 1.2, 
+                delay: 7, 
                 onComplete: enterPortfolio 
             });
         });
 
-        // Skip Intro
+        // Skip Intro bỏ qua toàn bộ chuyển cảnh
         document.getElementById('skip-intro').addEventListener('click', () => {
             playSpellSound();
             gsap.to("#white-flash", { 
                 opacity: 1, 
-                duration: 0.6, 
+                duration: 0.5, 
                 onComplete: enterPortfolio 
             });
         });
 
         function enterPortfolio() {
+            // Tắt giao diện intro
             document.getElementById('intro-container').style.display = 'none';
+            
+            // Hiển thị Portfolio
             const pf = document.getElementById('portfolio-container');
             pf.classList.remove('opacity-0');
             pf.classList.add('opacity-100');
             
-            gsap.to("#white-flash", { opacity: 0, duration: 1.2 });
+            // Flash biến mất nhẹ nhàng
+            gsap.to("#white-flash", { opacity: 0, duration: 1 });
+            
+            // Kích hoạt âm thanh gió rít nhẹ nhàng khi vào trang chủ
             if (!isMuted) {
                 initAmbientAudio();
             }
         }
 
-        // --- HÀNH VI TƯƠNG TÁC SAU KHI VÀO PORTFOLIO ---
+        // --- PHÁT TRIỂN PORTFOLIO ĐỘC BẢN ---
+
+        // Trích xuất đóng/mở chi tiết Experience mượt mà
         document.querySelectorAll('.toggle-details').forEach(btn => {
             btn.addEventListener('click', () => {
                 const content = btn.nextElementSibling;
@@ -813,6 +944,7 @@
             });
         });
 
+        // Thanh tiến độ phép thuật (Magic Energy Scroll Indicator)
         window.addEventListener('scroll', () => {
             const winScroll = document.documentElement.scrollTop || document.body.scrollTop;
             const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
@@ -820,17 +952,19 @@
             document.getElementById('magic-scroll-bar').style.height = scrolled + '%';
         });
 
+        // Form cú chuyển thư (Send Owl Mail)
         const form = document.getElementById('owl-mail-form');
         form.addEventListener('submit', (e) => {
             e.preventDefault();
             playSpellSound();
             
+            // Hiệu ứng gấp thư chuyển đi bằng GSAP cực ngầu
             gsap.to(form, {
-                scale: 0.05,
-                y: -600,
-                rotation: 180,
+                scale: 0.1,
+                y: -500,
+                rotation: 360,
                 opacity: 0,
-                duration: 1.8,
+                duration: 1.5,
                 ease: "power3.in",
                 onComplete: () => {
                     alert("🧙‍♂️ Thư của bạn đã được cú mang đi thành công tới hòm thư của Linh!");
@@ -840,11 +974,13 @@
             });
         });
 
+        // Đồ đệ quay về đỉnh núi (Back to Top Apparition)
         document.getElementById('back-to-top').addEventListener('click', () => {
             playSpellSound();
-            gsap.to(window, { duration: 2, scrollTo: 0, ease: "power4.inOut" });
+            gsap.to(window, { duration: 1.5, scrollTo: 0, ease: "power4.inOut" });
         });
 
+        // Toggle Menu Mobile
         const menuToggle = document.getElementById('mobile-menu-toggle');
         const mobileMenu = document.getElementById('mobile-menu');
         menuToggle.addEventListener('click', () => {
