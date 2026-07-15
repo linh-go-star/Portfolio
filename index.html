@@ -974,12 +974,6 @@
             });
         });
 
-        // Đồ đệ quay về đỉnh núi (Back to Top Apparition)
-        document.getElementById('back-to-top').addEventListener('click', () => {
-            playSpellSound();
-            gsap.to(window, { duration: 1.5, scrollTo: 0, ease: "power4.inOut" });
-        });
-
         // Toggle Menu Mobile
         const menuToggle = document.getElementById('mobile-menu-toggle');
         const mobileMenu = document.getElementById('mobile-menu');
