@@ -5,15 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Nguyễn Khánh Linh - Magical Portfolio</title>
     
-    <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700;900&family=Cinzel:wght@400;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
     
-    <!-- FontAwesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
-    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
@@ -36,7 +33,6 @@
         }
     </script>
     
-    <!-- GSAP for Cinematic Animations -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollToPlugin.min.js"></script>
 
@@ -74,7 +70,7 @@
         /* Thư viện cổ kính */
         .bg-library {
             background-image: linear-gradient(rgba(10, 7, 4, 0.85), rgba(5, 3, 2, 0.95)), 
-                              url('https://images.unsplash.com/photo-1507842217343-583bb7270b66?auto=format&fit=crop&q=80&w=1600');
+                              url('theme 2. jpg');
             background-size: cover;
             background-position: center;
             background-attachment: fixed;
@@ -115,39 +111,29 @@
 </head>
 <body class="font-body selection:bg-magicGold selection:text-darkAcademia">
 
-    <!-- Thanh năng lượng phép thuật chạy dọc màn hình -->
     <div id="magic-scroll-bar" class="fixed right-0 top-0 h-0 z-50 transition-all duration-100"></div>
 
-    <!-- Hệ thống Âm thanh & Điều khiển -->
     <div class="fixed bottom-6 left-6 z-50 flex items-center gap-3">
         <button id="sound-toggle" class="bg-darkAcademia/90 border border-magicGold/50 text-magicGold px-4 py-2 rounded-full font-title text-xs hover:bg-magicGold hover:text-darkAcademia transition-all duration-300 gold-border-glow">
             🔇 Sound Off
         </button>
     </div>
 
-    <!-- Hạt bụi phép thuật chạy ngầm toàn màn hình -->
     <canvas id="magic-dust-canvas" class="fixed top-0 left-0 w-full h-full pointer-events-none z-10 opacity-70"></canvas>
 
-    <!-- ========================================================= -->
-    <!-- INTRO CINEMATIC CONTAINER -->
-    <!-- ========================================================= -->
     <div id="intro-container" class="fixed inset-0 w-full h-full bg-black z-50 flex items-center justify-center overflow-hidden">
         
-        <!-- Nút Skip Intro -->
         <button id="skip-intro" class="absolute top-6 right-6 z-50 text-parchment/60 font-title hover:text-magicGold tracking-widest text-xs transition-all">
             SKIP INTRO <i class="fa-solid fa-wand-magic-sparkles ml-1"></i>
         </button>
 
-        <!-- Scene 1: Lời mở đầu ẩn hiện -->
         <div id="scene-1" class="absolute inset-0 flex items-center justify-center px-4 bg-black">
             <h2 class="font-header text-xl md:text-3xl text-magicGold text-center tracking-widest opacity-0 select-none max-w-2xl leading-relaxed">
                 "Every great wizard has a story..."
             </h2>
         </div>
 
-        <!-- Scene 2 & 3: Thuyền trên hồ đêm đi vào Lâu đài -->
-        <div id="scene-lake" class="absolute inset-0 opacity-0 flex flex-col items-center justify-center transition-transform duration-[4000ms] ease-out bg-cover bg-center" style="background-image: linear-gradient(to bottom, rgba(0,0,0,0.4), rgba(0,0,0,0.85)), url('https://images.unsplash.com/photo-1547826039-bfc35e0f1ea8?auto=format&fit=crop&q=80&w=1600');">
-            <!-- Mặt nước phản chiếu & lớp sương mù di chuyển -->
+        <div id="scene-lake" class="absolute inset-0 opacity-0 flex flex-col items-center justify-center transition-transform duration-[4000ms] ease-out bg-cover bg-center" style="background-image: linear-gradient(to bottom, rgba(0,0,0,0.4), rgba(0,0,0,0.85)), url('theme 1 .jpg');">
             <div class="absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-black via-[#0d0d1a]/40 to-transparent pointer-events-none"></div>
             
             <div class="text-center z-20 px-6 max-w-3xl">
@@ -157,7 +143,6 @@
                 <p class="font-body text-xl text-parchment/80 italic tracking-wide">Hành trình khám phá tri thức và phép thuật bắt đầu...</p>
             </div>
 
-            <!-- Nút EXPLORE để đi vào trường -->
             <div id="explore-btn-container" class="absolute bottom-20 z-30 opacity-0 scale-90">
                 <button id="explore-btn" class="font-header tracking-widest text-lg md:text-2xl text-magicGold border-2 border-magicGold px-10 py-4 bg-darkAcademia/90 rounded-md hover:bg-magicGold hover:text-darkAcademia transition-all duration-500 gold-border-glow flex items-center gap-4">
                     ENTER CASTLE <i class="fa-solid fa-door-open"></i>
@@ -165,11 +150,9 @@
             </div>
         </div>
 
-        <!-- Scene 4 & 5 & 6: Đi vào Thư viện & Quyển sách bay ra -->
-        <div id="scene-library" class="absolute inset-0 opacity-0 flex items-center justify-center bg-cover bg-center transition-transform duration-[3000ms] ease-out" style="background-image: linear-gradient(rgba(10, 7, 4, 0.8), rgba(5, 3, 2, 0.95)), url('https://images.unsplash.com/photo-1568667256549-094345857637?auto=format&fit=crop&q=80&w=1600');">
+        <div id="scene-library" class="absolute inset-0 opacity-0 flex items-center justify-center bg-cover bg-center transition-transform duration-[3000ms] ease-out" style="background-image: linear-gradient(rgba(10, 7, 4, 0.8), rgba(5, 3, 2, 0.95)), url('theme 2. jpg');">
             <div class="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(211,175,55,0.15)_0%,transparent_75%)]"></div>
             
-            <!-- Nến bay lơ lửng trong thư viện -->
             <div class="absolute top-1/4 left-1/4 candle w-3 h-16 bg-gradient-to-b from-[#ffeed1] to-magicGold/20 rounded-full blur-[0.5px]">
                 <div class="w-3 h-3 bg-orange-500 rounded-full blur-[2px] animate-pulse mx-auto -mt-2"></div>
             </div>
@@ -182,7 +165,6 @@
                     "Accio Portfolio!"
                 </div>
                 
-                <!-- Quyển sách ma thuật tự bay tới và mở ra -->
                 <div id="magic-book" class="w-72 h-96 mx-auto bg-gradient-to-r from-amber-950 to-[#3d2314] border-2 border-magicGold/60 rounded-r-lg rounded-l-md shadow-2xl relative flex items-center justify-center opacity-0 transform rotate-12 scale-75 transition-all duration-1000">
                     <div class="absolute inset-y-1 left-3 right-1.5 bg-[#f5eeda] rounded-r-md shadow-inner flex flex-col justify-between p-6 text-darkAcademia border-l-4 border-amber-900/30">
                         <div class="border-b border-amber-900/20 pb-2">
@@ -202,21 +184,15 @@
             </div>
         </div>
 
-        <!-- Màn che Flash trắng chuyển tiếp -->
         <div id="white-flash" class="absolute inset-0 bg-white opacity-0 pointer-events-none z-50"></div>
     </div>
 
-    <!-- ========================================================= -->
-    <!-- MAIN PORTFOLIO CONTENT -->
-    <!-- ========================================================= -->
     <div id="portfolio-container" class="opacity-0 w-full min-h-screen relative z-20 bg-library">
 
-        <!-- THANH ĐIỀU HƯỚNG (NAVIGATION BAR) -->
         <nav class="fixed top-0 left-0 w-full z-40 bg-gradient-to-b from-[#100b07] to-transparent border-b border-magicGold/10 backdrop-blur-md">
             <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
                 <a href="#home" class="font-header text-xl text-magicGold tracking-widest gold-glow">NKL</a>
                 
-                <!-- Desktop Menu -->
                 <div class="hidden md:flex items-center gap-6 font-title text-sm tracking-wider">
                     <a href="#home" class="hover:text-magicGold hover:gold-glow transition-all">Home</a>
                     <a href="#about" class="hover:text-magicGold hover:gold-glow transition-all">About</a>
@@ -228,13 +204,11 @@
                     <a href="#contact" class="hover:text-magicGold hover:gold-glow transition-all">Contact</a>
                 </div>
                 
-                <!-- Mobile Menu Toggle -->
                 <button id="mobile-menu-toggle" class="md:hidden text-magicGold text-2xl">
                     <i class="fa-solid fa-bars"></i>
                 </button>
             </div>
             
-            <!-- Mobile Menu Dropdown -->
             <div id="mobile-menu" class="hidden md:hidden bg-darkAcademia/95 border-b border-magicGold/20 py-4 flex flex-col items-center gap-4 font-title text-sm">
                 <a href="#home" class="mobile-link py-1 hover:text-magicGold">Home</a>
                 <a href="#about" class="mobile-link py-1 hover:text-magicGold">About</a>
@@ -247,19 +221,17 @@
             </div>
         </nav>
 
-        <!-- HERO SECTION -->
         <section id="home" class="min-h-screen pt-28 flex flex-col items-center justify-center text-center px-6 relative overflow-hidden">
             <div class="max-w-4xl z-20">
-                <!-- Avatar trong khung mạ vàng cổ điển -->
                 <div class="w-48 h-48 mx-auto rounded-full overflow-hidden gold-frame mb-8 hover:scale-105 transition-all duration-500">
-                    <img src="432f21901e6a9434cd7b.jpg" alt="Nguyễn Khánh Linh" class="w-full h-full object-cover object-top" />
+                    <img src="chandung.jpg" alt="Nguyễn Khánh Linh" class="w-full h-full object-cover object-top" />
                 </div>
                 
                 <p class="font-title text-magicGold uppercase tracking-widest text-sm mb-2">Welcome to the magical archives</p>
                 <h1 class="font-header text-3xl md:text-5xl text-parchment leading-tight tracking-wider mb-6">NGUYỄN KHÁNH LINH</h1>
                 
                 <p class="font-body text-xl md:text-2xl max-w-2xl mx-auto text-parchment/90 leading-relaxed italic">
-                    "Tôi là sinh viên có niềm đam mê với phân tích dữ liệu và nghiên cứu kinh tế, luôn mong muốn biến dữ liệu thành những thông tin có giá trị để hỗ trợ việc ra quyết định. Tôi yêu thích việc kết hợp tư duy phân tích, kiến thức kinh tế và các công cụ xử lý dữ liệu để khám phá xu hướng, giải quyết vấn đề và tạo ra những giải pháp thực tiễn."
+                    "Tôi là sinh viên có niềm đamêm với phân tích dữ liệu và nghiên cứu kinh tế, luôn mong muốn biến dữ liệu thành những thông tin có giá trị để hỗ trợ việc ra quyết định. Tôi yêu thích việc kết hợp tư duy phân tích, kiến thức kinh tế và các công cụ xử lý dữ liệu để khám phá xu hướng, giải quyết vấn đề và tạo ra những giải pháp thực tiễn."
                 </p>
                 
                 <div class="mt-8 flex justify-center gap-6 text-2xl">
@@ -277,7 +249,6 @@
             </div>
         </section>
 
-        <!-- ABOUT ME SECTION -->
         <section id="about" class="min-h-screen py-24 px-6 max-w-6xl mx-auto flex flex-col justify-center">
             <div class="text-center mb-16">
                 <span class="font-body italic text-magicGold">"The wand chooses the wizard..."</span>
@@ -286,9 +257,8 @@
             </div>
             
             <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-                <!-- Khung chân dung lớn -->
                 <div class="w-full max-w-sm mx-auto gold-frame rounded-md overflow-hidden bg-darkAcademia">
-                    <img src="432f21901e6a9434cd7b.jpg" alt="Nguyễn Khánh Linh" class="w-full h-auto object-cover" />
+                    <img src="chandung.jpg" alt="Nguyễn Khánh Linh" class="w-full h-auto object-cover" />
                 </div>
                 
                 <div class="space-y-6">
@@ -314,7 +284,6 @@
             </div>
         </section>
 
-        <!-- SKILLS SECTION -->
         <section id="skills" class="min-h-screen py-24 px-6 max-w-6xl mx-auto flex flex-col justify-center">
             <div class="text-center mb-16">
                 <span class="font-body italic text-magicGold">"Sorting Hat's choice of magic..."</span>
@@ -323,7 +292,6 @@
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <!-- Programming Magic -->
                 <div class="parchment-card p-8 rounded-md relative overflow-hidden group">
                     <div class="absolute -right-4 -bottom-4 opacity-10 text-magicGold text-8xl transition-all duration-500 group-hover:scale-110">
                         <i class="fa-solid fa-terminal"></i>
@@ -336,7 +304,6 @@
                     </ul>
                 </div>
 
-                <!-- Design Alchemy -->
                 <div class="parchment-card p-8 rounded-md relative overflow-hidden group">
                     <div class="absolute -right-4 -bottom-4 opacity-10 text-magicGold text-8xl transition-all duration-500 group-hover:scale-110">
                         <i class="fa-solid fa-palette"></i>
@@ -351,7 +318,6 @@
                     </ul>
                 </div>
 
-                <!-- Charisma & Leadership -->
                 <div class="parchment-card p-8 rounded-md relative overflow-hidden group">
                     <div class="absolute -right-4 -bottom-4 opacity-10 text-magicGold text-8xl transition-all duration-500 group-hover:scale-110">
                         <i class="fa-solid fa-handshake"></i>
@@ -368,7 +334,6 @@
             </div>
         </section>
 
-        <!-- EXPERIENCE TIMELINE -->
         <section id="experience" class="min-h-screen py-24 px-6 max-w-4xl mx-auto">
             <div class="text-center mb-16">
                 <span class="font-body italic text-magicGold">"Great accomplishments leave trails..."</span>
@@ -376,10 +341,8 @@
                 <div class="h-[1px] w-32 bg-gradient-to-r from-transparent via-magicGold to-transparent mx-auto mt-4"></div>
             </div>
 
-            <!-- Timeline -->
             <div class="relative border-l border-magicGold/30 ml-4 md:ml-8 space-y-12">
                 
-                <!-- Experience 1 -->
                 <div class="relative pl-8 group">
                     <div class="absolute -left-2 top-1.5 w-4 h-4 rounded-full bg-magicGold border border-darkAcademia shadow-[0_0_8px_#d4af37] z-10"></div>
                     <span class="font-title text-magicGold text-sm tracking-widest">2024 - NAY</span>
@@ -397,7 +360,6 @@
                     </div>
                 </div>
 
-                <!-- Experience 2 -->
                 <div class="relative pl-8 group">
                     <div class="absolute -left-2 top-1.5 w-4 h-4 rounded-full bg-magicGold border border-darkAcademia shadow-[0_0_8px_#d4af37] z-10"></div>
                     <span class="font-title text-magicGold text-sm tracking-widest">2025 - NAY</span>
@@ -419,7 +381,6 @@
                     </div>
                 </div>
 
-                <!-- Experience 3 -->
                 <div class="relative pl-8 group">
                     <div class="absolute -left-2 top-1.5 w-4 h-4 rounded-full bg-magicGold border border-darkAcademia shadow-[0_0_8px_#d4af37] z-10"></div>
                     <span class="font-title text-magicGold text-sm tracking-widest">2025 - NAY</span>
@@ -442,7 +403,6 @@
             </div>
         </section>
 
-        <!-- PROJECTS GRID -->
         <section id="projects" class="min-h-screen py-24 px-6 max-w-6xl mx-auto">
             <div class="text-center mb-16">
                 <span class="font-body italic text-magicGold">"Chamber of secrets unveiled..."</span>
@@ -451,7 +411,6 @@
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                <!-- Project 1 -->
                 <div class="parchment-card rounded-md overflow-hidden flex flex-col justify-between group">
                     <div class="h-48 bg-gradient-to-br from-amber-950 to-[#100702] flex items-center justify-center relative overflow-hidden">
                         <i class="fa-solid fa-scroll text-6xl text-magicGold/20 group-hover:scale-110 transition-all duration-500"></i>
@@ -472,7 +431,6 @@
                     </div>
                 </div>
 
-                <!-- Project 2 -->
                 <div class="parchment-card rounded-md overflow-hidden flex flex-col justify-between group">
                     <div class="h-48 bg-gradient-to-br from-[#2b1704] to-[#120a04] flex items-center justify-center relative overflow-hidden">
                         <i class="fa-solid fa-chart-line text-6xl text-magicGold/20 group-hover:scale-110 transition-all duration-500"></i>
@@ -495,7 +453,6 @@
             </div>
         </section>
 
-        <!-- ACHIEVEMENTS SECTION -->
         <section id="achievements" class="min-h-screen py-24 px-6 max-w-6xl mx-auto flex flex-col justify-center">
             <div class="text-center mb-16">
                 <span class="font-body italic text-magicGold">"Order of Merlin decorations..."</span>
@@ -538,7 +495,6 @@
             </div>
         </section>
 
-        <!-- EDUCATION SECTION -->
         <section id="education" class="min-h-screen py-24 px-6 max-w-4xl mx-auto">
             <div class="text-center mb-16">
                 <span class="font-body italic text-magicGold">"Ancient scrolls of learning..."</span>
@@ -546,7 +502,6 @@
                 <div class="h-[1px] w-32 bg-gradient-to-r from-transparent via-magicGold to-transparent mx-auto mt-4"></div>
             </div>
 
-            <!-- Education Timeline -->
             <div class="space-y-12">
                 <div class="parchment-card p-8 rounded-md border-l-4 border-magicGold flex flex-col md:flex-row justify-between items-start md:items-center gap-6">
                     <div>
@@ -572,7 +527,6 @@
             </div>
         </section>
 
-        <!-- CONTACT SECTION -->
         <section id="contact" class="min-h-screen py-24 px-6 max-w-4xl mx-auto flex flex-col justify-center">
             <div class="text-center mb-16">
                 <span class="font-body italic text-magicGold">"Send your dispatch via Owl..."</span>
@@ -623,7 +577,6 @@
             </div>
         </section>
 
-        <!-- FOOTER -->
         <footer class="bg-[#050302] border-t border-magicGold/10 py-12 px-6 text-center relative overflow-hidden">
             <div class="max-w-6xl mx-auto space-y-6 z-20 relative">
                 <h2 class="font-header text-lg text-magicGold tracking-widest">NGUYỄN KHÁNH LINH • PORTFOLIO</h2>
@@ -637,9 +590,6 @@
 
     </div>
 
-    <!-- ========================================================= -->
-    <!-- INTERACTIVE SCRIPTING -->
-    <!-- ========================================================= -->
     <script>
         // --- WEB AUDIO API (Synthesizing Magical Ambient Tracks) ---
         let audioCtx = null;
@@ -788,7 +738,7 @@
             tlIntro.to("#scene-1 h2", { opacity: 1, duration: 2.5, ease: "power2.out", delay: 0.5 });
             tlIntro.to("#scene-1 h2", { opacity: 0, duration: 1.5, ease: "power2.inOut", delay: 2 });
             
-            // Cảnh 2 & 3: Lướt tới Hogwarts qua Hồ Đen (Zoom-in nhẹ tạo hiệu ứng camera hành trình)
+            // Cảnh 2 & 3: Lướt tới Hogwarts qua Hồ Đen
             tlIntro.to("#scene-1", { display: "none" });
             tlIntro.to("#scene-lake", { opacity: 1, duration: 3, ease: "power1.inOut" });
             tlIntro.fromTo("#scene-lake", { scale: 1.15 }, { scale: 1, duration: 4, ease: "power1.out" }, "-=3");
@@ -799,7 +749,7 @@
         document.getElementById('explore-btn').addEventListener('click', () => {
             playSpellSound();
             
-            // Cảnh 4: Đi qua cánh cổng khổng lồ (Zoom cực mạnh vào hình ảnh lâu đài để chuyển cảnh)
+            // Cảnh 4: Đi qua cánh cổng khổng lồ
             gsap.to("#scene-lake", { scale: 1.4, opacity: 0, duration: 2.2, ease: "power2.inOut" });
             
             // Cảnh 5: Tiến vào thư viện cổ kính
